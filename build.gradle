@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.jfree', name: 'jfreechart', version: '1.5.0'
+    compile group: 'org.jfree', name: 'jcommon', version: '1.0.23'
+    compile group: 'org.apache.commons', name: 'commons-math3', version: '3.0'
+    compile group : 'org.jsoup', name : 'jsoup', version: '1.8.3'
+
+    testImplementation(
+                        'junit:junit:4.13',
+                        'org.hamcrest:hamcrest:2.2',
+                        'org.hamcrest:hamcrest-library:2.2'
+                        )
+    testRuntime('junit:junit:4.13')
+
+}
+
+test {
+    useJUnitPlatform()
+}
