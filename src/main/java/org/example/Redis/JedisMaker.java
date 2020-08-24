@@ -8,7 +8,25 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLDecoder;
 
-public class JedisMaker {
+/**
+ * 레디스는 기본으로 String 타입의 키와 다양한 데이터 타입 중 하나를 값으로 넣을 수 있는 맵구조
+ *
+ * 자바의 Set<String> 과 유사한 set 구조를 지원. set이 존재하지 않으면 redis가 생성
+ *   - jedis.sadd("set이름", 요소1, 요소2, ...) : set 구조에 데이터 추가
+ *   - jedis.sismember("set이름", 요소1) : set에 요소가 있는지 검사
+ *
+ * 자바의 List<String> 과 유사한 list 구조를 지원.list가 존재하지 않으면 redis가 생성
+ *   - jedis.rpush(list이름, 요소1, 요소2, ...) : 요소의 오른쪽 끝에 추가가
+ *   - jedis.lindex(list이름, 인덱스) : 정수 인덱스를 받아 list에 지정된 요소를 반환
+ *
+ * 자바의 Map<String, String>과 유사한 hash 구조 지원. key, value는 모두 string만 지원
+ *   - jedis.hset(hash이름, key, value) : hash에 새로운 엔트리 추가
+ *   - jedis.hget(hash이름, key) : hash에 값 조회
+ *   - jedis.hincrBy(hash이름, key, 정수) : 지정한 hash이름을 가진 hash에서 key의 현재
+ *                                         값을 가져와(없으면 0) 1만큼 증가시키도 다시 저장
+ */
+
+ public class JedisMaker {
 
     /**
      * Make a Jedis object and authenticate it.
@@ -17,79 +35,10 @@ public class JedisMaker {
      * @throws IOException
      */
     public static Jedis make() throws IOException {
-
-        // assemble the directory name
-        String slash = File.separator;
-        String filename = "resources" + slash + "redis_url.txt";
-        URL fileURL = JedisMaker.class.getClassLoader().getResource(filename);
-        String filepath = URLDecoder.decode(fileURL.getFile(), "UTF-8");
-
-        // open the file
-        StringBuilder sb = new StringBuilder();
-        BufferedReader br;
-        try {
-            br = new BufferedReader(new FileReader(filepath));
-        } catch (FileNotFoundException e1) {
-            System.out.println("File not found: " + filename);
-            printInstructions();
-            return null;
-        }
-
-        // read the file
-        while (true) {
-            String line = br.readLine();
-            if (line == null) break;
-            sb.append(line);
-        }
-        br.close();
-
-        // parse the URL
-        URI uri;
-        try {
-            uri = new URI(sb.toString());
-        } catch (URISyntaxException e) {
-            System.out.println("Reading file: " + filename);
-            System.out.println("It looks like this file does not contain a valid URI.");
-            printInstructions();
-            return null;
-        }
-        String host = uri.getHost();
-        int port = uri.getPort();
-
-        String[] array = uri.getAuthority().split("[:@]");
-        String auth = array[1];
-
         // connect to the server
-        Jedis jedis = new Jedis(host, port);
-
-        try {
-            jedis.auth(auth);
-        } catch (Exception e) {
-            System.out.println("Trying to connect to " + host);
-            System.out.println("on port " + port);
-            System.out.println("with authcode " + auth);
-            System.out.println("Got exception " + e);
-            printInstructions();
-            return null;
-        }
+        Jedis jedis = new Jedis("localhost", 6379);
         return jedis;
     }
-
-
-    /**
-     *
-     */
-    private static void printInstructions() {
-        System.out.println("");
-        System.out.println("To connect to RedisToGo, you have to provide a file called");
-        System.out.println("redis_url.txt that contains the URL of your Redis server.");
-        System.out.println("If you select an instance on the RedisToGo web page,");
-        System.out.println("you should see a URL that contains the information you need:");
-        System.out.println("redis://redistogo:AUTH@HOST:PORT");
-        System.out.println("Create a file called redis_url.txt in the src/resources");
-        System.out.println("directory, and paste in the URL.");
-    }
-
 
     /**
      * @param args

@@ -30,7 +30,7 @@ public class WikiFetcher {
 
     public Elements readWikipedia(String url) throws IOException {
         URL realURL = new URL(url);
-        String filename = realURL.getHost() + realURL.getPath();
+        String filename = "http://" + realURL.getHost() + realURL.getPath();
         InputStream stream = WikiFetcher.class.getClassLoader().getResourceAsStream(filename);
         Document doc = Jsoup.parse(stream, "UTF-8", filename);
         Element content = doc.getElementById("mw-content-text");
@@ -57,7 +57,7 @@ public class WikiFetcher {
     public static void main(String[] args) throws IOException {
         WikiFetcher wf = new WikiFetcher();
         String url = "http://en.wikipedia.org/wiki/Java_(programming_language)";
-        Elements paragraphs = wf.readWikipedia(url);
+        Elements paragraphs = wf.fetchWikipedia(url);
         Iterator var4 = paragraphs.iterator();
 
         while(var4.hasNext()) {

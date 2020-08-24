@@ -45,11 +45,11 @@ public class JedisIndexTest {
         WikiFetcher wf = new WikiFetcher();
 
         url1 = "https://en.wikipedia.org/wiki/Java_(programming_language)";
-        Elements paragraphs = wf.readWikipedia(url1);
+        Elements paragraphs = wf.fetchWikipedia(url1);
         index.indexPage(url1, paragraphs);
 
         url2 = "https://en.wikipedia.org/wiki/Programming_language";
-        paragraphs = wf.readWikipedia(url2);
+        paragraphs = wf.fetchWikipedia(url2);
         index.indexPage(url2, paragraphs);
     }
 
