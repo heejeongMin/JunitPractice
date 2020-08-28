@@ -1,4 +1,4 @@
-package pragmaticJunit.unit2;
+package pragmaticJunit.unit2_3;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -6,9 +6,10 @@
  * We make no guarantees that this code is fit for any purpose. 
  * Visit http://www.pragmaticprogrammer.com/titles/utj2 for more book information.
 ***/
-package iloveyouboss.domain;
+package pragmaticJunit.unit5.iloveyouboss.domain;
 
-import iloveyouboss.controller.*;
+import pragmaticJunit.unit5.iloveyouboss.controller.QuestionController;
+
 import java.util.*;
 import java.util.concurrent.atomic.*;
 
@@ -20,15 +21,17 @@ public class StatCompiler {
    
    public Map<Integer,String> questionText(List<BooleanAnswer> answers) {
       Map<Integer,String> questions = new HashMap<>();
+
       answers.stream().forEach(answer -> {
-         if (!questions.containsKey(answer.getQuestionId()))
-            questions.put(answer.getQuestionId(), 
-               controller.find(answer.getQuestionId()).getText()); });
+         if(!questions.containsKey(answer.getQuestionId())){
+            questions.put(answer.getQuestionId(), controller.find(answer.getQuestionId()).getText());
+         }
+      });
+
       return questions;
    }
 
-   public Map<String, Map<Boolean, AtomicInteger>> responsesByQuestion(
-         List<BooleanAnswer> answers, Map<Integer,String> questions) {
+   public Map<String, Map<Boolean, AtomicInteger>> responsesByQuestion (List<BooleanAnswer> answers, Map<Integer,String> questions) {
       Map<Integer, Map<Boolean, AtomicInteger>> responses = new HashMap<>();
       answers.stream().forEach(answer -> incrementHistogram(responses, answer));
       return convertHistogramIdsToText(responses, questions);

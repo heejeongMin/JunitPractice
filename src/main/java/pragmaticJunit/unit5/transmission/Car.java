@@ -6,7 +6,7 @@
  * We make no guarantees that this code is fit for any purpose. 
  * Visit http://www.pragmaticprogrammer.com/titles/utj2 for more book information.
 ***/
-package transmission;
+package pragmaticJunit.unit5.transmission;
 
 public class Car implements Moveable {
 

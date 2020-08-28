@@ -6,7 +6,7 @@
  * We make no guarantees that this code is fit for any purpose. 
  * Visit http://www.pragmaticprogrammer.com/titles/utj2 for more book information.
 ***/
-package pragmaticJunit.unit2;
+package pragmaticJunit.unit2_3;
 
 
 public class BooleanQuestion extends Question {

@@ -6,7 +6,7 @@
  * We make no guarantees that this code is fit for any purpose. 
  * Visit http://www.pragmaticprogrammer.com/titles/utj2 for more book information.
 ***/
-package iloveyouboss.domain;
+package pragmaticJunit.unit5.iloveyouboss.domain;
 
 public enum Weight {
    MustMatch(Integer.MAX_VALUE),

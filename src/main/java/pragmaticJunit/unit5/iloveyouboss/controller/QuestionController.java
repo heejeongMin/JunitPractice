@@ -6,9 +6,13 @@
  * We make no guarantees that this code is fit for any purpose. 
  * Visit http://www.pragmaticprogrammer.com/titles/utj2 for more book information.
 ***/
-package iloveyouboss.controller;
+package pragmaticJunit.unit5.iloveyouboss.controller;
 
-import iloveyouboss.domain.*;
+import pragmaticJunit.unit5.iloveyouboss.domain.BooleanQuestion;
+import pragmaticJunit.unit5.iloveyouboss.domain.PercentileQuestion;
+import pragmaticJunit.unit5.iloveyouboss.domain.Persistable;
+import pragmaticJunit.unit5.iloveyouboss.domain.Question;
+
 import java.time.*;
 import java.util.*;
 import java.util.function.*;

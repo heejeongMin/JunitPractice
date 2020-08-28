@@ -6,11 +6,11 @@
  * We make no guarantees that this code is fit for any purpose. 
  * Visit http://www.pragmaticprogrammer.com/titles/utj2 for more book information.
 ***/
-package pragmaticJunit.unit2;
+package pragmaticJunit.unit2_3;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
-import static pragmaticJunit.unit2.PointMatcher.isNear;
+import static pragmaticJunit.unit2_3.PointMatcher.isNear;
 
 import java.io.*;
 import java.util.*;
@@ -274,7 +274,7 @@ public class AssertTest {
    }
 
    /*
-   try/catch를 사용해서 try block에서 강제로 fail()을 호출한다. fail이 호출되면 catch로 제어가 넘어가게 되고, 테스트가 종료(통과)된다.
+      try/catch를 사용해서 try block에서 강제로 fail()을 호출한다. fail이 호출되면 catch로 제어가 넘어가게 되고, 테스트가 종료(통과)된다.
       ** fail()을 해주지 않으면 오류는 throw 가 되어도 테스트 실패는 발생하지 않는다.
       ** 비어있는 catch블럭 허용됨
     */
